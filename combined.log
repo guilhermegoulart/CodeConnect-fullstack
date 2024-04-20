@@ -6,3 +6,8 @@
 {"error":{},"level":"error","message":"falha ao obter posts"}
 {"error":{},"level":"error","message":"falha ao obter posts"}
 {"error":{},"level":"error","message":"falha ao obter posts"}
+{"error":{},"level":"error","message":"falha ao obter posts"}
+{"error":{"clientVersion":"5.12.1","name":"PrismaClientValidationError"},"level":"error","message":"falha ao obter posts"}
+{"error":{},"level":"error","message":"falha ao obter posts"}
+{"error":{},"level":"error","message":"falha ao obter post, com o slug: ","slug":"explorando-flexbox-no-csss"}
+{"error":{},"level":"error","message":"falha ao obter post, com o slug: ","slug":"explorando-flexbox-no-scss"}
