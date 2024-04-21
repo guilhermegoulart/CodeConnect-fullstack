@@ -3,7 +3,7 @@ import style from "./searchform.module.css";
 
 export default function SearchForm () {
   return (
-    <form className={style.form}>
+    <form className={style.form} action='/'>
       <input
         name="q"
         className={style.input}
