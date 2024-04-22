@@ -32,7 +32,7 @@ export const CardPost = ({ post, highlight }) => {
             </IconButton>
           </form>
           <p>
-            {post.likes}
+            {post.Likes}
           </p>
         </div>
         <Avatar imageSrc={post.author.avatar} name={post.author.username} />
