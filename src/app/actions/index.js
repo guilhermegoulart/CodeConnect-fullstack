@@ -1,6 +1,7 @@
 'use server'
 
-import db from "../../prisma/db";
+import { revalidatePath } from 'next/cache';
+import db from '../../../prisma/db'
 
 export async function incrementThumbsUp(post) {
   
@@ -12,4 +13,7 @@ export async function incrementThumbsUp(post) {
       },
     }
   });
+
+  revalidatePath('/')
+  revalidatePath(`/${post.slug}`)
 }
