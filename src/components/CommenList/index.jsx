@@ -1,4 +1,5 @@
 import Comment from "../Comment";
+import ReplyModal from "../ModalReply";
 import { Replies } from "../Replies";
 import styles from "./commentist.module.css";
 
@@ -9,9 +10,10 @@ export default function CommentList({ comments }) {
         Comentários
       </h2>
       <ul>
-        {comments.map((comment) => (
-          <li>
-            <Comment comment={comment} key={comment.id} />
+        {comments.map((comments) => (
+          <li key={comments.id}>
+            <Comment comment={comments}  />
+            <ReplyModal comment={comments} />
             <Replies />
           </li>
           ))}

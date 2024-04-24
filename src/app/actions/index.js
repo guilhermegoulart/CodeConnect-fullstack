@@ -22,39 +22,43 @@ export async function incrementThumbsUp(post) {
 export async function PostComment(post, formData) {
   const author = await db.user.findFirst({
     where: {
-      username: "anabeatriz_dev"
-    }
-  })
+      username: "anabeatriz_dev",
+    },
+  });
 
   await db.comment.create({
     data: {
-      text: formData.get('text'),
-      authorId: author.id,
-      postId: post.id   
-    }
-    
-  })
-  
-  revalidatePath('/')
-  revalidatePath(`/${post.slug}`)
-}
-
-export async function PostReply(post, parent ,formData) {
-  const author = await db.user.findFirst({
-    where: {
-      username: "anabeatriz_dev"
-    }
-  })
-
-  await db.comment.create({
-    data: {
-      text: formData.get('text'),
+      text: formData.get("text"),
       authorId: author.id,
       postId: post.id,
-      parentId: parent.parentId ?? parent.id
-    }
-    
-  })
-  
-  revalidatePath(`/${post.slug}`)
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath(`/${post.slug}`);
+}
+
+export async function PostReply(parent, formData) {
+  const author = await db.user.findFirst({
+    where: {
+      username: "anabeatriz_dev",
+    },
+  });
+
+  const Post = await db.post.findFirst({
+    where: {
+      id: parent.postId,
+    },
+  });
+
+  await db.comment.create({
+    data: {
+      text: formData.get("text"),
+      authorId: author.id,
+      postId: Post.id,
+      parentId: parent.parentId ?? parent.id,
+    },
+  });
+
+  revalidatePath(`/${Post.slug}`);
 }
