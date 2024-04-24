@@ -31,6 +31,7 @@ async function getAllPosts(page, searchTerm) {
       },
       include: {
         author: true,
+        comments: true,
       },
     });
 

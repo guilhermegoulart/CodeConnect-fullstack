@@ -1,15 +1,20 @@
 import Image from "next/image";
-import { Avatar } from "../Avatar";
-import styles from "./cardpost.module.css";
 import Link from "next/link";
+
+import { Avatar } from "../Avatar";
 import { incrementThumbsUp } from "@/app/actions";
 import { ThumbsUpButton } from "./ThumbsUpButton";
+import { ModalComment, modalComment }  from "../ModalComment"
+
+import styles from "./cardpost.module.css";
 
 export const CardPost = ({ post, highlight }) => {
+
   const submitThumbsUp = incrementThumbsUp.bind(null, post);
 
   return (
     <article className={styles.card} style={{ width: highlight ? 993 : 486 }}>
+      
       <header className={styles.header}>
         <figure style={{ height: highlight ? 300 : 133 }}>
           <Image
@@ -19,6 +24,7 @@ export const CardPost = ({ post, highlight }) => {
           />
         </figure>
       </header>
+
       <section className={styles.body}>
         <h2>{post.title}</h2>
         <p>{post.body}</p>
@@ -26,15 +32,23 @@ export const CardPost = ({ post, highlight }) => {
           Ver detalhes
         </Link>
       </section>
+
       <footer className={styles.footer}>
         <div>
           <form action={submitThumbsUp}>
-            <ThumbsUpButton/>
+            <ThumbsUpButton />
+            <p>{post.Likes}</p>
           </form>
-          <p>{post.Likes}</p>
+          <div>
+            <ModalComment />
+            <p>
+              {post.comments.lenght}
+            </p>
+          </div>
         </div>
         <Avatar imageSrc={post.author.avatar} name={post.author.username} />
       </footer>
+    
     </article>
   );
 };
