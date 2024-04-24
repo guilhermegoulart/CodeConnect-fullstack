@@ -14,7 +14,7 @@ export default function CommentList({ comments }) {
           <li key={comments.id}>
             <Comment comment={comments}  />
             <ReplyModal comment={comments} />
-            <Replies />
+            <Replies comment={comments}/>
           </li>
           ))}
       </ul>
