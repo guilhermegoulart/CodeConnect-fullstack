@@ -20,15 +20,15 @@ export async function incrementThumbsUp(post) {
 }
 
 export async function PostComment(post, formData) {
-  const author = db.user.findFirst({
+  const author = await db.user.findFirst({
     where: {
-      username: 'anabeatriz_dev'
+      username: "anabeatriz_dev"
     }
   })
 
   await db.comment.create({
     data: {
-      text: FormData.get('text'),
+      text: formData.get('text'),
       authorId: author.id,
       postId: post.id   
     }
