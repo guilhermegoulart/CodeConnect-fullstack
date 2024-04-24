@@ -2,19 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Avatar } from "../Avatar";
-import { incrementThumbsUp } from "@/app/actions";
+import { incrementThumbsUp, PostComment } from "@/app/actions";
 import { ThumbsUpButton } from "./ThumbsUpButton";
-import { ModalComment, modalComment }  from "../ModalComment"
+import { ModalComment } from "../ModalComment";
 
 import styles from "./cardpost.module.css";
 
 export const CardPost = ({ post, highlight }) => {
-
   const submitThumbsUp = incrementThumbsUp.bind(null, post);
+  const submitComment = PostComment.bind(null, post);
 
   return (
     <article className={styles.card} style={{ width: highlight ? 993 : 486 }}>
-      
       <header className={styles.header}>
         <figure style={{ height: highlight ? 300 : 133 }}>
           <Image
@@ -34,13 +33,15 @@ export const CardPost = ({ post, highlight }) => {
       </section>
 
       <footer className={styles.footer}>
-        <div>
+        <div className={styles.actions}>
           <form action={submitThumbsUp}>
             <ThumbsUpButton />
-            <p>{post.Likes}</p>
+            <p>
+              {post.Likes}
+            </p>
           </form>
           <div>
-            <ModalComment />
+            <ModalComment action={submitComment}/>
             <p>
               {post.comments.lenght}
             </p>
@@ -48,7 +49,6 @@ export const CardPost = ({ post, highlight }) => {
         </div>
         <Avatar imageSrc={post.author.avatar} name={post.author.username} />
       </footer>
-    
     </article>
   );
 };

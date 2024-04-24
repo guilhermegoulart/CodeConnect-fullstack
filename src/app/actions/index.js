@@ -34,6 +34,7 @@ export async function PostComment(post, formData) {
     }
     
   })
+  
   revalidatePath('/')
   revalidatePath(`/${post.slug}`)
 }

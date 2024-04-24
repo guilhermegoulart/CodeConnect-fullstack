@@ -51,6 +51,7 @@ export default async function Home({ searchParams }) {
     prev,
     next,
   } = await getAllPosts(currentPage, searchTerm);
+  
   return (
     <main className={styles.grid}>
       {posts.map((post) => (

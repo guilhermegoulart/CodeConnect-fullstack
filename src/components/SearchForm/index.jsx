@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button  from "../Button";
 import style from "./searchform.module.css";
 
 export default function SearchForm () {
